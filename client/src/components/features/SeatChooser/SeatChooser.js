@@ -8,10 +8,15 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const dispatch = useDispatch();
   const seats = useSelector(getSeats);
   const requests = useSelector(getRequests);
-  
+
+
   useEffect(() => {
     dispatch(loadSeatsRequest());
   }, [dispatch])
+
+  const allSeats = 50;
+  const freeSeats =
+    allSeats - seats.filter((item) => item.day === chosenDay).length;
 
   const isTaken = (seatId) => {
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
@@ -25,13 +30,28 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
 
   return (
     <div>
-      <h3>Pick a seat</h3>
-      <small id="pickHelp" className="form-text text-muted ml-2"><Button color="secondary" /> – seat is already taken</small>
-      <small id="pickHelpTwo" className="form-text text-muted ml-2 mb-4"><Button outline color="primary" /> – it's empty</small>
-      { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].success) && <div className="seats">{[...Array(50)].map((x, i) => prepareSeat(i+1) )}</div>}
-      { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].pending) && <Progress animated color="primary" value={50} /> }
-      { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].error) && <Alert color="warning">Couldn't load seats...</Alert> }
-    </div>
+        <h3>Pick a seat</h3>
+        <small id='pickHelp' className='form-text text-muted ml-2'>
+          <Button color='secondary' /> – seat is already taken
+        </small>
+        <small id='pickHelpTwo' className='form-text text-muted ml-2 '>
+          <Button outline color='primary' /> – it's empty
+        </small>
+        <small id='pickHelpThree' className='form-text text-muted  ml-2 mb-4'>
+          Free seats {freeSeats}/{allSeats}
+        </small>
+        {requests['LOAD_SEATS'] && requests['LOAD_SEATS'].success && (
+          <div className='seats'>
+            {[...Array(50)].map((x, i) => prepareSeat(i + 1))}
+          </div>
+        )}
+        {requests['LOAD_SEATS'] && requests['LOAD_SEATS'].pending && (
+          <Progress animated color='primary' value={50} />
+        )}
+        {requests['LOAD_SEATS'] && requests['LOAD_SEATS'].error && (
+          <Alert color='warning'>Couldn't load seats...</Alert>
+        )}
+      </div>
   )
 }
 
