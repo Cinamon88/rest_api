@@ -17,5 +17,8 @@
     "socket.io": "^4.6.0",
     "uuid": "^9.0.0",
     "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
