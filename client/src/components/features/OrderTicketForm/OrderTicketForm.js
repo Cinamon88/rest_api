@@ -12,16 +12,13 @@ const OrderTicketForm = () => {
   console.log(requests);
 
   // update seats
-  
-  const socket = io(
-    process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:8000/'
-  );
 
   useEffect(() => {
+    const socket = io(process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:8000/');
     socket.on('seatsUpdated', (seats) => {
       dispatch(loadSeats(seats));
-    });
-  }, []);
+  });
+  }, [dispatch]);
 
   // end update seats
 
