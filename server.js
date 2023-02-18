@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const testimonials = require('./routes/testimonials.routes');
 const concerts = require('./routes/concerts.routes');
 const seats = require('./routes/seats.routes');
+const dbatlas = "mongodb+srv://lukasz:Marlenka88!@cluster.toha3jg.mongodb.net/NewWaveDB?retryWrites=true&w=majority";
 
 const app = express();
 
@@ -38,7 +39,7 @@ io.on("connection", (socket) => {
 });
 
 // connects our backend code with the database
-mongoose.connect("mongodb+srv://lukasz:Marlenka88!@cluster.toha3jg.mongodb.net/?retryWrites=true&w=majority", {
+mongoose.connect(dbatlas, {
   useNewUrlParser: true,
 });
 const db = mongoose.connection;
