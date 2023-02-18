@@ -7,7 +7,13 @@ const mongoose = require("mongoose");
 const testimonials = require('./routes/testimonials.routes');
 const concerts = require('./routes/concerts.routes');
 const seats = require('./routes/seats.routes');
-const dbatlas = "mongodb+srv://lukasz:Marlenka88!@cluster.toha3jg.mongodb.net/NewWaveDB?retryWrites=true&w=majority";
+
+
+const NODE_ENV = process.env.NODE_ENV;
+if (NODE_ENV === "production")
+  dbatlas = `mongodb+srv://lukasz:Marlenka88!@cluster.toha3jg.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
+else if (NODE_ENV === "test") dbatlas = "mongodb://localhost:27017/NewWaveDBtest";
+else dbatlas = "mongodb://localhost:27017/NewWaveDB";
 
 const app = express();
 
