@@ -37,7 +37,9 @@ app.use((req, res) => {
   res.status(404).send("404 not found...");
 });
 const server = app.listen(process.env.PORT || 8000, () => {
-  console.log("Server is running on port: 8000");
+  if (NODE_ENV !== "test") {
+    console.log("Server is running on port: 8000");
+  }
 });
 const io = socket(server);
 io.on("connection", (socket) => {
