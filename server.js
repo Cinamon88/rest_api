@@ -3,6 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const socket = require("socket.io");
 const mongoose = require("mongoose");
+const helmet = require("helmet");
 
 const testimonials = require('./routes/testimonials.routes');
 const concerts = require('./routes/concerts.routes');
@@ -18,6 +19,7 @@ else dbatlas = "mongodb://localhost:27017/NewWaveDB";
 
 const app = express();
 
+app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
