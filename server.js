@@ -13,7 +13,7 @@ const seats = require('./routes/seats.routes');
 const NODE_ENV = process.env.NODE_ENV;
 console.log('Node', NODE_ENV);
 if (NODE_ENV === "production")
-  dbatlas = `mongodb+srv://lukasz:Marlenka88!@cluster.toha3jg.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
+  dbatlas = `mongodb+srv://lukasz:doUB9T3GLfYQ9L0H@cluster.toha3jg.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
 else if (NODE_ENV === "test") dbatlas = "mongodb://localhost:27017/NewWaveDBtest";
 else dbatlas = "mongodb://localhost:27017/NewWaveDB";
 
